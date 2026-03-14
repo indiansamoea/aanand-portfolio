@@ -58,12 +58,13 @@ export default function setSplitText() {
     if (title.split) {
       title.split.revert();
     }
-    title.split = new SplitText(title, {
+    const split = new SplitText(title, {
       type: "chars,lines",
       linesClass: "split-line",
     });
+    title.split = split;
     title.anim = gsap.fromTo(
-      title.split.chars,
+      split.chars,
       { autoAlpha: 0, y: 80, rotate: 10 },
       {
         autoAlpha: 1,
