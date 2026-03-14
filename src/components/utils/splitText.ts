@@ -23,16 +23,19 @@ export default function setSplitText() {
     para.classList.add("visible");
     if (para.anim) {
       para.anim.progress(1).kill();
-      para.split?.revert();
+    }
+    if (para.split) {
+      para.split.revert();
     }
 
-    para.split = new SplitText(para, {
+    const split = new SplitText(para, {
       type: "lines,words",
       linesClass: "split-line",
     });
+    para.split = split;
 
     para.anim = gsap.fromTo(
-      para.split.words,
+      split.words,
       { autoAlpha: 0, y: 80 },
       {
         autoAlpha: 1,
@@ -51,7 +54,9 @@ export default function setSplitText() {
   titles.forEach((title: ParaElement) => {
     if (title.anim) {
       title.anim.progress(1).kill();
-      title.split?.revert();
+    }
+    if (title.split) {
+      title.split.revert();
     }
     title.split = new SplitText(title, {
       type: "chars,lines",
